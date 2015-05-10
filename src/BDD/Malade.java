@@ -13,6 +13,7 @@ public class Malade {
     protected int mNumMalade;
     protected String mNom;
     protected String mPrenom;
+    protected String mAdresse;
     protected String mTel;
     protected String mNomMutuel;
     
@@ -46,6 +47,14 @@ public class Malade {
     
     public void setmTel(String mTel) {
         this.mTel = mTel;
+    }
+    
+    public String getmAdresse() {
+        return mAdresse;
+    }
+    
+    public void setmAdresse(String mAdresse) {
+        this.mAdresse = mAdresse;
     }
     
     public String getmNomMutuel() {

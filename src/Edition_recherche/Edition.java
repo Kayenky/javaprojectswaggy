@@ -57,20 +57,20 @@ public class Edition {
 
     //suppression
     public boolean suppression(Chambre cham) throws SQLException {
-        String requsuppr = "DELETE FROM chambre WHERE code_service = ";
+        String requsuppr = "DELETE FROM chambre WHERE code_service = '";
         requsuppr += cham.getccodeServ();
-        requsuppr += " AND no_chambre = ";
+        requsuppr += "' AND no_chambre = ";
         requsuppr += cham.getcNumCham();
 
         Statement state = connec.prepareStatement(requsuppr);
 
         // Requete executer et vérifier
-        int bool = state.executeUpdate(requsuppr);
-        if (bool == 0) {
+        int test = state.executeUpdate(requsuppr);
+        if (test == 0) {
             System.out.println("La suppression a échoué");
             return false;
         } else {
-            System.out.println("La suppression a réussi !");
+            System.out.println("La suppression a réussi");
             return true;
         }
     }
@@ -89,12 +89,12 @@ public class Edition {
 
         Statement state = connec.createStatement();
 
-        int bool = state.executeUpdate(requmaj);
-        if (bool == 0) {
+        int test = state.executeUpdate(requmaj);
+        if (test == 0) {
             System.out.println("La mise à jour a échoué");
             return false;
         } else {
-            System.out.println("La mise à jour a réussi !");
+            System.out.println("La mise à jour a réussi");
             return true;
         }
     }
@@ -134,12 +134,12 @@ public class Edition {
         Statement state = connec.prepareStatement(requsuppr);
 
         // Requete executer et vérifier
-        int bool = state.executeUpdate(requsuppr);
-        if (bool == 0) {
+        int test = state.executeUpdate(requsuppr);
+        if (test == 0) {
             System.out.println("La suppression a échoué");
             return false;
         } else {
-            System.out.println("La suppression a réussi !");
+            System.out.println("La suppression a réussi");
             return true;
         }
     }
@@ -154,12 +154,12 @@ public class Edition {
 
         Statement state = connec.createStatement();
 
-        int bool = state.executeUpdate(requmaj);
-        if (bool == 0) {
+        int test = state.executeUpdate(requmaj);
+        if (test == 0) {
             System.out.println("La mise à jour a échoué");
             return false;
         } else {
-            System.out.println("La mise à jour a réussi !");
+            System.out.println("La mise à jour a réussi");
             return true;
         }
     }
@@ -198,12 +198,12 @@ public class Edition {
         Statement state = connec.prepareStatement(requsuppr);
 
         // Requete executer et vérifier
-        int bool = state.executeUpdate(requsuppr);
-        if (bool == 0) {
+        int test = state.executeUpdate(requsuppr);
+        if (test == 0) {
             System.out.println("La suppression a échoué");
             return false;
         } else {
-            System.out.println("La suppression a réussi !");
+            System.out.println("La suppression a réussi");
             return true;
         }
     }
@@ -224,12 +224,12 @@ public class Edition {
 
         Statement state = connec.createStatement();
 
-        int bool = state.executeUpdate(requmaj);
-        if (bool == 0) {
+        int test = state.executeUpdate(requmaj);
+        if (test == 0) {
             System.out.println("La mise à jour a échoué");
             return false;
         } else {
-            System.out.println("La mise à jour a réussi !");
+            System.out.println("La mise à jour a réussi");
             return true;
         }
     }
@@ -240,7 +240,7 @@ public class Edition {
         Statement state = connec.createStatement();
         String requinser = "INSERT INTO hospitalisation VALUES (    ";
         requinser += "'" + String.valueOf(hos.gethNumMalade().getmNumMalade()) + "'";
-        requinser += ", '" + String.valueOf(hos.gethNumService().getscodeServ()) + "'";
+        requinser += ", '" + hos.gethNumService().getscodeServ() + "'";
         requinser += ", '" + String.valueOf(hos.gethNumCham().getcNumCham()) + "'";
         requinser += ", '" + String.valueOf(hos.gethNumlit()) + "'";
         requinser += ")";
@@ -266,16 +266,40 @@ public class Edition {
         Statement state = connec.prepareStatement(requsuppr);
 
         // Requete executer et vérifier
-        int bool = state.executeUpdate(requsuppr);
-        if (bool == 0) {
+        int test = state.executeUpdate(requsuppr);
+        if (test == 0) {
             System.out.println("La suppression a échoué");
             return false;
         } else {
-            System.out.println("La suppression a réussi !");
+            System.out.println("La suppression a réussi");
             return true;
         }
     }
     //mise a jour
+    public boolean update(Hospitalisation hos) throws SQLException {
+
+        String requmaj = "UPDATE hospitalisation";
+        requmaj += " SET code_service = '";
+        requmaj += hos.gethNumService().getscodeServ();
+        requmaj += "', no_chambre = '";
+        requmaj += hos.gethNumCham().getcNumCham();
+        requmaj += "', lit = '";
+        requmaj += hos.gethNumlit();
+        requmaj += "', WHERE no_malade = ";
+        requmaj += hos.gethNumMalade().getmNumMalade();
+
+        Statement state = connec.createStatement();
+
+        int test = state.executeUpdate(requmaj);
+        if (test == 0) {
+            System.out.println("La mise à jour a échoué");
+            return false;
+        } else {
+            System.out.println("La mise à jour a réussi");
+            return true;
+        }
+    }
+    
 
     //Infirmier
     //ajout
@@ -283,7 +307,7 @@ public class Edition {
         Statement state = connec.createStatement();
         String requinser = "INSERT INTO infirmier VALUES (    ";
         requinser += "'" + String.valueOf(inf.geteNum()) + "'";
-        requinser += ", '" + String.valueOf(inf.geticode_service()) + "'";
+        requinser += ", '" + inf.geticode_service() + "'";
         requinser += ", '" + inf.getRotation() + "'";
         requinser += ", '" + String.valueOf(inf.getSalaire()) + "'";
         requinser += ")";
@@ -316,36 +340,32 @@ public class Edition {
         Statement state = connec.prepareStatement(requsuppr);
 
         // Requete executer et vérifier
-        int bool = state.executeUpdate(requsuppr);
-        if (bool == 0) {
+        int test = state.executeUpdate(requsuppr);
+        if (test == 0) {
             System.out.println("La suppression a échoué");
             return false;
         } else {
-            System.out.println("La suppression a réussi !");
+            System.out.println("La suppression a réussi");
             return true;
         }
     }
     //mise a jour
-    public boolean update(Malade mal) throws SQLException {
+ public boolean update(Infirmier inf) throws SQLException {
 
-        String requmaj = "UPDATE service";
-        requmaj += " SET nom = '";
-        requmaj += mal.getmNom();
-        requmaj += "', prenom = '";
-        requmaj += mal.getmPrenom();
-        requmaj += "', adresse = '";
-        requmaj += mal.getmAdresse();
-        requmaj += "', tel = '";
-        requmaj += mal.getmTel();
-        requmaj += "', mutuelle = '";
-        requmaj += mal.getmNomMutuel();
+        String requmaj = "UPDATE infirmier";
+        requmaj += "'SET code_service = '";
+        requmaj += inf.geticode_service();
+        requmaj += "', rotation = '";
+        requmaj += inf.getRotation();
+        requmaj += "', salaire = '";
+        requmaj += String.valueOf(inf.getSalaire());
         requmaj += "', WHERE numero = ";
-        requmaj += mal.getmNumMalade();
+        requmaj += inf.geteNum();
 
         Statement state = connec.createStatement();
 
-        int bool = state.executeUpdate(requmaj);
-        if (bool == 0) {
+        int test = state.executeUpdate(requmaj);
+        if (test == 0) {
             System.out.println("La mise à jour a échoué");
             return false;
         } else {
@@ -353,7 +373,6 @@ public class Edition {
             return true;
         }
     }
-
 
     //Malade
     //ajout
@@ -389,39 +408,44 @@ public class Edition {
         Statement state = connec.prepareStatement(requsuppr);
 
         // Requete executer et vérifier
-        int bool = state.executeUpdate(requsuppr);
-        if (bool == 0) {
+        int test = state.executeUpdate(requsuppr);
+        if (test == 0) {
             System.out.println("La suppression a échoué");
             return false;
         } else {
-            System.out.println("La suppression a réussi !");
+            System.out.println("La suppression a réussi");
             return true;
         }
     }
     //mise a jour
-    public boolean update(Infirmier inf) throws SQLException {
+    public boolean update(Malade mal) throws SQLException {
 
-        String requmaj = "UPDATE infirmier";
-        requmaj += "'SET code_service = '";
-        requmaj += inf.geticode_service();
-        requmaj += "', rotation = '";
-        requmaj += inf.getRotation();
-        requmaj += "', salaire = '";
-        requmaj += inf.getSalaire();
+        String requmaj = "UPDATE service";
+        requmaj += " SET nom = '";
+        requmaj += mal.getmNom();
+        requmaj += "', prenom = '";
+        requmaj += mal.getmPrenom();
+        requmaj += "', adresse = '";
+        requmaj += mal.getmAdresse();
+        requmaj += "', tel = '";
+        requmaj += mal.getmTel();
+        requmaj += "', mutuelle = '";
+        requmaj += mal.getmNomMutuel();
         requmaj += "', WHERE numero = ";
-        requmaj += inf.geteNum();
+        requmaj += mal.getmNumMalade();
 
         Statement state = connec.createStatement();
 
-        int bool = state.executeUpdate(requmaj);
-        if (bool == 0) {
+        int test = state.executeUpdate(requmaj);
+        if (test == 0) {
             System.out.println("La mise à jour a échoué");
             return false;
         } else {
-            System.out.println("La mise à jour a réussi !");
+            System.out.println("La mise à jour a réussi");
             return true;
         }
     }
+   
 
     //Service
     //ajout
@@ -449,14 +473,15 @@ public class Edition {
 
     //suppression
     public boolean suppression(Service serv) throws SQLException {
-        String requsuppr = "DELETE FROM service WHERE code = ";
+        String requsuppr = "DELETE FROM service WHERE code = '";
         requsuppr += serv.getscodeServ();
-
+        requsuppr += "'";
+        
         Statement state = connec.prepareStatement(requsuppr);
 
         // Requete executer et vérifier
-        int bool = state.executeUpdate(requsuppr);
-        if (bool == 0) {
+        int test = state.executeUpdate(requsuppr);
+        if (test == 0) {
             System.out.println("La suppression a échoué");
             return false;
         } else {
@@ -480,8 +505,8 @@ public class Edition {
 
         Statement state = connec.createStatement();
 
-        int bool = state.executeUpdate(requmaj);
-        if (bool == 0) {
+        int test = state.executeUpdate(requmaj);
+        if (test == 0) {
             System.out.println("La mise à jour a échoué");
             return false;
         } else {
@@ -497,7 +522,7 @@ public class Edition {
         String requinser = "INSERT INTO soigne VALUES (    ";
         requinser += "'" + String.valueOf(soi.getso_eNum().geteNum()) + "'";
         requinser += ", '" + String.valueOf(soi.getsoNumMalade().getmNumMalade()) + "'";
-        requinser += ")";
+        requinser += "')";
 
         state.executeUpdate(requinser);
 
@@ -520,12 +545,32 @@ public class Edition {
         Statement state = connec.prepareStatement(requsuppr);
 
         // Requete executer et vérifier
-        int bool = state.executeUpdate(requsuppr);
-        if (bool == 0) {
+        int test = state.executeUpdate(requsuppr);
+        if (test == 0) {
             System.out.println("La suppression a échoué");
             return false;
         } else {
             System.out.println("La suppression a réussi !");
+            return true;
+        }
+    }
+    //mise a jour
+    public boolean update(Soigne soi) throws SQLException {
+
+        String requmaj = "UPDATE soigne";
+        requmaj += " SET no_docteur = '";
+        requmaj += String.valueOf(soi.getso_eNum().geteNum());
+        requmaj += "', WHERE no_malade = ";
+        requmaj += soi.getsoNumMalade().getmNumMalade();
+
+        Statement state = connec.createStatement();
+
+        int test = state.executeUpdate(requmaj);
+        if (test == 0) {
+            System.out.println("La mise à jour a échoué");
+            return false;
+        } else {
+            System.out.println("La mise à jour a réussi");
             return true;
         }
     }

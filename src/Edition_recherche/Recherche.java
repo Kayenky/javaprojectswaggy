@@ -35,136 +35,126 @@ public class Recherche {
 
     //Pour la navigation dans la base on a besoin que tout les données soient 
     //affichées dans l'interface graphique
-    public List<Soigne> toutes_données() throws SQLException {
-        List<Soigne> liste_soigne = new ArrayList<Soigne>();
+    public List<Chambre> cha_toutes_données() throws SQLException {
+        List<Chambre> liste_chambre = new ArrayList<Chambre>();
         Statement state = connec.createStatement();
-        ResultSet resulttout = state.executeQuery("SELECT * FROM soigne ");
+        ResultSet resulttout = state.executeQuery("SELECT * FROM chambre ");
         //tant qu'il y a un autre résultat avec la requete
         while (resulttout.next()) {
-            Soigne soigne = new Soigne();
-            Docteur docteur = new Docteur();
-            Employé employe = new Employé();
-            Malade malade = new Malade();
+            Chambre chambre = new Chambre();
 
-            docteur.seteNum(resulttout.getInt("no_docteur"));
-            malade.setmNumMalade(resulttout.getInt("no_malade"));
-            soigne.setso_eNum(docteur);
-            soigne.setsoNumMalade(malade);
+            chambre.setccodeServ(resulttout.getString("code_service"));
+            chambre.setcNumCham(resulttout.getInt("no_chambre"));
+            chambre.setcNumSurv(resulttout.getInt("surveillant"));
+            chambre.setnbre_lits(resulttout.getInt("nb_lits"));
 
-            liste_soigne.add(soigne);
+            liste_chambre.add(chambre);
         }
         resulttout.close();
-        return liste_soigne;
+        return liste_chambre;
     }
 
-    public List<Soigne> toutes_données() throws SQLException {
-        List<Soigne> liste_soigne = new ArrayList<Soigne>();
+    public List<Docteur> doc_toutes_données() throws SQLException {
+        List<Docteur> liste_docteur = new ArrayList<Docteur>();
         Statement state = connec.createStatement();
-        ResultSet resulttout = state.executeQuery("SELECT * FROM soigne ");
+        ResultSet resulttout = state.executeQuery("SELECT * FROM docteur ,employe WHERE docteur.numero = employe.numero");
         //tant qu'il y a un autre résultat avec la requete
         while (resulttout.next()) {
-            Soigne soigne = new Soigne();
             Docteur docteur = new Docteur();
-            Employé employe = new Employé();
-            Malade malade = new Malade();
 
-            docteur.seteNum(resulttout.getInt("no_docteur"));
-            malade.setmNumMalade(resulttout.getInt("no_malade"));
-            soigne.setso_eNum(docteur);
-            soigne.setsoNumMalade(malade);
+            docteur.setspecialite(resulttout.getString("specialite"));
+            docteur.seteNum(resulttout.getInt("numero"));
 
-            liste_soigne.add(soigne);
+            liste_docteur.add(docteur);
         }
         resulttout.close();
-        return liste_soigne;
+        return liste_docteur;
     }
 
-    public List<Soigne> toutes_données() throws SQLException {
-        List<Soigne> liste_soigne = new ArrayList<Soigne>();
+    public List<Employé> emp_toutes_données() throws SQLException {
+        List<Employé> liste_employe = new ArrayList<Employé>();
         Statement state = connec.createStatement();
-        ResultSet resulttout = state.executeQuery("SELECT * FROM soigne ");
+        ResultSet resulttout = state.executeQuery("SELECT * FROM employe ");
         //tant qu'il y a un autre résultat avec la requete
         while (resulttout.next()) {
-            Soigne soigne = new Soigne();
-            Docteur docteur = new Docteur();
             Employé employe = new Employé();
-            Malade malade = new Malade();
 
-            docteur.seteNum(resulttout.getInt("no_docteur"));
-            malade.setmNumMalade(resulttout.getInt("no_malade"));
-            soigne.setso_eNum(docteur);
-            soigne.setsoNumMalade(malade);
+            employe.seteNum(resulttout.getInt("numero"));
+            employe.seteNom(resulttout.getString("nom"));
+            employe.setePrenom(resulttout.getString("prenom"));
+            employe.seteTel(resulttout.getString("tel"));
+            employe.seteAdresse(resulttout.getString("adresse"));
 
-            liste_soigne.add(soigne);
+            liste_employe.add(employe);
         }
         resulttout.close();
-        return liste_soigne;
+        return liste_employe;
     }
 
-    public List<Soigne> toutes_données() throws SQLException {
-        List<Soigne> liste_soigne = new ArrayList<Soigne>();
+    public List<Hospitalisation> hos_toutes_données() throws SQLException {
+        List<Hospitalisation> liste_hospitalisation = new ArrayList<Hospitalisation>();
         Statement state = connec.createStatement();
-        ResultSet resulttout = state.executeQuery("SELECT * FROM soigne ");
+        ResultSet resulttout = state.executeQuery("SELECT * FROM hospitalisation ");
         //tant qu'il y a un autre résultat avec la requete
         while (resulttout.next()) {
-            Soigne soigne = new Soigne();
-            Docteur docteur = new Docteur();
-            Employé employe = new Employé();
+            Hospitalisation hospitalisation = new Hospitalisation();
+            Chambre chambre = new Chambre();
+            Service service = new Service();
             Malade malade = new Malade();
 
-            docteur.seteNum(resulttout.getInt("no_docteur"));
-            malade.setmNumMalade(resulttout.getInt("no_malade"));
-            soigne.setso_eNum(docteur);
-            soigne.setsoNumMalade(malade);
 
-            liste_soigne.add(soigne);
+            hospitalisation.sethNumlit(resulttout.getInt("lit"));
+            malade.setmNumMalade(resulttout.getInt("no_malade"));
+            service.setscodeServ(resulttout.getString("code_service"));
+            chambre.setcNumCham(resulttout.getInt("no_chambre"));
+            hospitalisation.sethNumCham(chambre);
+            hospitalisation.sethNumService(service);
+            hospitalisation.sethNumMalade(malade);
+                    
+            liste_hospitalisation.add(hospitalisation);
         }
         resulttout.close();
-        return liste_soigne;
+        return liste_hospitalisation;
     }
 
-    public List<Soigne> toutes_données() throws SQLException {
-        List<Soigne> liste_soigne = new ArrayList<Soigne>();
+    public List<Infirmier> inf_toutes_données() throws SQLException {
+        List<Infirmier> liste_infirmier = new ArrayList<Infirmier>();
         Statement state = connec.createStatement();
-        ResultSet resulttout = state.executeQuery("SELECT * FROM soigne ");
+        ResultSet resulttout = state.executeQuery("SELECT * FROM infirmier ,employe WHERE infirmier.numero = employe.numero");
         //tant qu'il y a un autre résultat avec la requete
         while (resulttout.next()) {
-            Soigne soigne = new Soigne();
-            Docteur docteur = new Docteur();
-            Employé employe = new Employé();
-            Malade malade = new Malade();
+            Infirmier infirmier = new Infirmier();
 
-            docteur.seteNum(resulttout.getInt("no_docteur"));
-            malade.setmNumMalade(resulttout.getInt("no_malade"));
-            soigne.setso_eNum(docteur);
-            soigne.setsoNumMalade(malade);
+            infirmier.seteNum(resulttout.getInt("numero"));
+            infirmier.seticode_service(resulttout.getString("code_service"));
+            infirmier.setRotation(resulttout.getString("rotaion"));
+            infirmier.setSalaire(resulttout.getInt("salaire"));
 
-            liste_soigne.add(soigne);
+            liste_infirmier.add(infirmier);
         }
         resulttout.close();
-        return liste_soigne;
+        return liste_infirmier;
     }
 
-    public List<Soigne> toutes_données() throws SQLException {
-        List<Soigne> liste_soigne = new ArrayList<Soigne>();
+    public List<Malade> mal_toutes_données() throws SQLException {
+        List<Malade> liste_malade = new ArrayList<Malade>();
         Statement state = connec.createStatement();
-        ResultSet resulttout = state.executeQuery("SELECT * FROM soigne ");
+        ResultSet resulttout = state.executeQuery("SELECT * FROM malade ");
         //tant qu'il y a un autre résultat avec la requete
         while (resulttout.next()) {
-            Soigne soigne = new Soigne();
-            Docteur docteur = new Docteur();
-            Employé employe = new Employé();
             Malade malade = new Malade();
 
-            docteur.seteNum(resulttout.getInt("no_docteur"));
-            malade.setmNumMalade(resulttout.getInt("no_malade"));
-            soigne.setso_eNum(docteur);
-            soigne.setsoNumMalade(malade);
+            malade.setmNumMalade(resulttout.getInt("numero"));
+            malade.setmNom(resulttout.getString("nom"));
+            malade.setmPrenom(resulttout.getString("prenom"));
+            malade.setmAdresse(resulttout.getString("adresse"));
+            malade.setmTel(resulttout.getString("tel"));
+            malade.setmNomMutuel(resulttout.getString("mutuelle"));
 
-            liste_soigne.add(soigne);
+            liste_malade.add(malade);
         }
         resulttout.close();
-        return liste_soigne;
+        return liste_malade;
     }
 
     public List<Service> ser_toutes_données() throws SQLException {
@@ -175,11 +165,11 @@ public class Recherche {
         while (resulttout.next()) {
             Service service = new Service();
 
-            docteur.seteNum(resulttout.getInt("no_docteur"));
-            malade.setmNumMalade(resulttout.getInt("no_malade"));
-            soigne.setso_eNum(docteur);
-            soigne.setsoNumMalade(malade);
-
+            service.setsdirecnum(resulttout.getInt("directeur"));
+            service.setsNom(resulttout.getString("nom"));
+            service.setslettreBat(resulttout.getString("batiment"));
+            service.setscodeServ(resulttout.getString("code"));
+            
             liste_service.add(service);
         }
         resulttout.close();

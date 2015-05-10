@@ -10,7 +10,7 @@ package BDD;
  * @author paulferrand
  */
 public class Infirmier extends Employé{
-    protected int icode_service;
+    protected String icode_service;
     protected String Rotation;
     protected int Salaire;
     
@@ -31,11 +31,11 @@ public class Infirmier extends Employé{
         this.Rotation = Rotation;
     }
     
-    public int geticode_service() {
+    public String geticode_service() {
         return icode_service;
     }
     
-    public void seticode_service(int icode_service) {
+    public void seticode_service(String icode_service) {
         this.icode_service = icode_service;
     }
     

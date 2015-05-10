@@ -27,7 +27,7 @@ public class Service {
         return scodeServ;
     }
     
-    public void setsNumServ(String scodeServ) {
+    public void setscodeServ(String scodeServ) {
         this.scodeServ = scodeServ;
     }
     
@@ -47,7 +47,5 @@ public class Service {
         this.sdirecnum = sdirecnum;
     }
 
-    public void setscodeServ(String scodeServ) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 }

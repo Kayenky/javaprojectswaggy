@@ -14,7 +14,6 @@ public class Malade {
     protected String mNom;
     protected String mPrenom;
     protected String mTel;
-    protected int mNumCham;
     protected String mNomMutuel;
     
     public int getmNumMalade() {
@@ -23,14 +22,6 @@ public class Malade {
     
     public void setmNumMalade(int mNumMalade) {
         this.mNumMalade = mNumMalade;
-    }
-    
-    public int getmNumCham() {
-        return mNumCham;
-    }
-    
-    public void setmNumCham(int mNumCham) {
-        this.mNumCham = mNumCham;
     }
     
     public String getmNom() {

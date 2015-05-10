@@ -10,9 +10,9 @@ package BDD;
  * @author paulferrand
  */
 public class Service {
-    protected String slettreBat;
     protected String scodeServ;
     protected String sNom;
+    protected String slettreBat;
     protected int sdirecnum;
     
     public String getslettreBat() {
@@ -45,5 +45,9 @@ public class Service {
     
     public void setsdirecnum(int sdirecnum) {
         this.sdirecnum = sdirecnum;
+    }
+
+    public void setscodeServ(String scodeServ) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

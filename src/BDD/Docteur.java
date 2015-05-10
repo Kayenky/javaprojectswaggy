@@ -11,7 +11,6 @@ package BDD;
  */
 public class Docteur extends Employé {
     protected String specialite;
-    protected boolean Directeur;
     
     public String getspecialite() {
         return specialite;
@@ -21,11 +20,4 @@ public class Docteur extends Employé {
         this.specialite = specialite;
     }
     
-    public boolean getsDirecteur() {
-        return Directeur;
-    }
-    
-    public void setDirecteur(boolean Directeur) {
-        this.Directeur = Directeur;
-    }
 }

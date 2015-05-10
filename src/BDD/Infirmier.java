@@ -10,20 +10,10 @@ package BDD;
  * @author paulferrand
  */
 public class Infirmier extends Employé{
-    protected boolean surveillant;
-    protected int Salaire;
-    protected String Rotation;
     protected int icode_service;
-    protected int iNumServ;
+    protected String Rotation;
+    protected int Salaire;
     
-    
-    public boolean getsurveillant() {
-        return surveillant;
-    }
-    
-    public void setsurveillant(boolean surveillant) {
-        this.surveillant = surveillant;
-    }
     
     public int getSalaire() {
         return Salaire;
@@ -49,11 +39,4 @@ public class Infirmier extends Employé{
         this.icode_service = icode_service;
     }
     
-    public int getiNumServ() {
-        return iNumServ;
-    }
-    
-    public void setiNumServ(int iNumServ) {
-        this.iNumServ = iNumServ;
-    }
 }

@@ -30,7 +30,6 @@ public class Recherche {
     }
     
     //Chambre
-    @Override
     public Chambre ajout(Chambre cham) throws SQLException {
 		Statement state = connec.createStatement();
                 // Mise en place INSERT SQL
@@ -55,7 +54,6 @@ public class Recherche {
     }
     
     //Docteur
-    @Override
     public Docteur ajout(Docteur doc) throws SQLException {
 		Statement state = connec.createStatement();
                 // Mise en place INSERT SQL
@@ -83,7 +81,6 @@ public class Recherche {
     }
     
     //Employé
-    @Override
     public Employé ajout(Employé emp) throws SQLException {
 		Statement state = connec.createStatement();
                 // Mise en place INSERT SQL
@@ -110,32 +107,30 @@ public class Recherche {
     }
     
     //Hospitalisation
-    @Override
-    public Chambre ajout(Chambre cham) throws SQLException {
+    public Hospitalisation ajout(Hospitalisation hos) throws SQLException {
 		Statement state = connec.createStatement();
                 // Mise en place INSERT SQL
 		String requinser = "INSERT INTO hospitalisation VALUES (    ";
-                requinser += "'" + cham.getccodeServ()+ "'";
-                requinser += ", '" + String.valueOf(cham.getcNumCham())+ "'";
-                requinser += ", '" + String.valueOf(cham.getcNumSurv())+ "'";
-                requinser += ", '" + String.valueOf(cham.getnbre_lits())+ "'";
+                requinser += "'" + String.valueOf(hos.gethNumMalade().getmNumMalade())+ "'";
+                requinser += ", '" + String.valueOf(hos.gethNumService().getscodeServ())+ "'";
+                requinser += ", '" + String.valueOf(hos.gethNumCham().getcNumCham())+ "'";
+                requinser += ", '" + String.valueOf(hos.gethNumlit())+ "'";
                 requinser += ")";
                 
                 state.executeUpdate(requinser);
                 
                 //ajout de la classe
-                Chambre chambre = new Chambre();
-		chambre.setcNumCham(cham.getcNumCham());
-		chambre.setccodeServ(cham.getccodeServ());
-		chambre.setcNumSurv(cham.getcNumSurv());
-		chambre.setnbre_lits(cham.getnbre_lits());
+                Hospitalisation hospitalisation = new Hospitalisation();
+		hospitalisation.sethNumMalade(hos.gethNumMalade());
+		hospitalisation.sethNumService(hos.gethNumService());
+		hospitalisation.sethNumCham(hos.gethNumCham());
+		hospitalisation.sethNumlit(hos.gethNumlit());
 		
 		System.out.println("insertion terminée");
-		return chambre;
+		return hospitalisation;
     }
     
     //Infirmier
-    @Override
     public Infirmier ajout(Infirmier inf) throws SQLException {
 		Statement state = connec.createStatement();
                 // Mise en place INSERT SQL
@@ -167,7 +162,6 @@ public class Recherche {
     }
     
     //Malade
-    @Override
     public Malade ajout(Malade mal) throws SQLException {
 		Statement state = connec.createStatement();
                 // Mise en place INSERT SQL
@@ -194,7 +188,6 @@ public class Recherche {
     }
     
     //Service
-    @Override
     public Service ajout(Service serv) throws SQLException {
 		Statement state = connec.createStatement();
                 // Mise en place INSERT SQL
@@ -219,27 +212,22 @@ public class Recherche {
     }
     
     //Soigne
-    @Override
-    public Chambre ajout(Chambre cham) throws SQLException {
+    public Soigne ajout(Soigne soi) throws SQLException {
 		Statement state = connec.createStatement();
                 // Mise en place INSERT SQL
 		String requinser = "INSERT INTO soigne VALUES (    ";
-                requinser += "'" + cham.getccodeServ()+ "'";
-                requinser += ", '" + String.valueOf(cham.getcNumCham())+ "'";
-                requinser += ", '" + String.valueOf(cham.getcNumSurv())+ "'";
-                requinser += ", '" + String.valueOf(cham.getnbre_lits())+ "'";
+                requinser += "'" + String.valueOf(soi.getso_eNum())+ "'";
+                requinser += ", '" + String.valueOf(soi.getsoNumMalade())+ "'";
                 requinser += ")";
                 
                 state.executeUpdate(requinser);
                 
                 //ajout de la classe
-                Chambre chambre = new Chambre();
-		chambre.setcNumCham(cham.getcNumCham());
-		chambre.setccodeServ(cham.getccodeServ());
-		chambre.setcNumSurv(cham.getcNumSurv());
-		chambre.setnbre_lits(cham.getnbre_lits());
+                Soigne soigne = new Soigne();
+		soigne.setsoNumMalade(soi.getsoNumMalade());
+		soigne.setso_eNum(soi.getso_eNum());
 		
 		System.out.println("insertion terminée");
-		return chambre;
+		return soigne;
     }
 }

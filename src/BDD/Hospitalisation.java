@@ -10,10 +10,10 @@ package BDD;
  * @author paulferrand
  */
 public class Hospitalisation {
-    protected int hNumlit;
+    protected Malade hNumMalade;
     protected Service hNumService;
     protected Chambre hNumCham;
-    protected Malade hNumMalade;
+    protected int hNumlit;
     
     public int gethNumlit() {
         return hNumlit;

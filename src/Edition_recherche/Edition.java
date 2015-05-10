@@ -33,7 +33,7 @@ public class Edition {
 
     //Chambre
     //ajout
-    public Chambre ajout(Chambre cham) throws SQLException {
+    public Chambre cha_ajout(Chambre cham) throws SQLException {
         Statement state = connec.createStatement();
         String requinser = "INSERT INTO chambre VALUES (    ";
         requinser += "'" + cham.getccodeServ() + "'";
@@ -56,7 +56,7 @@ public class Edition {
     }
 
     //suppression
-    public boolean suppression(Chambre cham) throws SQLException {
+    public boolean cha_suppression(Chambre cham) throws SQLException {
         String requsuppr = "DELETE FROM chambre WHERE code_service = '";
         requsuppr += cham.getccodeServ();
         requsuppr += "' AND no_chambre = ";
@@ -75,7 +75,7 @@ public class Edition {
         }
     }
     //mise a jour
-    public boolean update(Chambre cham) throws SQLException {
+    public boolean cha_update(Chambre cham) throws SQLException {
 
         String requmaj = "UPDATE chambre";
         requmaj += "'SET surveillant = '";
@@ -101,7 +101,7 @@ public class Edition {
 
     //Docteur
     //ajout
-    public Docteur ajout(Docteur doc) throws SQLException {
+    public Docteur doc_ajout(Docteur doc) throws SQLException {
         Statement state = connec.createStatement();
         String requinser = "INSERT INTO docteur VALUES (    ";
         requinser += "'" + String.valueOf(doc.geteNum()) + "'";
@@ -109,9 +109,6 @@ public class Edition {
         requinser += ")";
 
         state.executeUpdate(requinser);
-        /*//ajout d'une classe employe
-        Employé emp2 = doc;
-        ajout(emp2);*/
 
         //ajout de la classe
         Docteur docteur = new Docteur();
@@ -127,7 +124,7 @@ public class Edition {
     }
 
     //suppression
-    public boolean suppression(Docteur doc) throws SQLException {
+    public boolean doc_suppression(Docteur doc) throws SQLException {
         String requsuppr = "DELETE FROM docteur WHERE numero = ";
         requsuppr += doc.geteNum();
 
@@ -144,7 +141,7 @@ public class Edition {
         }
     }
     //mise a jour
-    public boolean update(Docteur doc) throws SQLException {
+    public boolean doc_update(Docteur doc) throws SQLException {
 
         String requmaj = "UPDATE docteur";
         requmaj += "'SET specialite = '";
@@ -166,7 +163,7 @@ public class Edition {
 
     //Employé
     //ajout
-    public Employé ajout(Employé emp) throws SQLException {
+    public Employé emp_ajout(Employé emp) throws SQLException {
         Statement state = connec.createStatement();
         String requinser = "INSERT INTO employe VALUES (    ";
         requinser += "'" + String.valueOf(emp.geteNum()) + "'";
@@ -191,7 +188,7 @@ public class Edition {
     }
 
     //suppression
-    public boolean suppression(Employé emp) throws SQLException {
+    public boolean emp_suppression(Employé emp) throws SQLException {
         String requsuppr = "DELETE FROM employe WHERE numero = ";
         requsuppr += emp.geteNum();
 
@@ -208,7 +205,7 @@ public class Edition {
         }
     }
     //mise a jour
-    public boolean update(Employé emp) throws SQLException {
+    public boolean emp_update(Employé emp) throws SQLException {
 
         String requmaj = "UPDATE employe";
         requmaj += "'SET nom = '";
@@ -236,7 +233,7 @@ public class Edition {
 
     //Hospitalisation
     //ajout
-    public Hospitalisation ajout(Hospitalisation hos) throws SQLException {
+    public Hospitalisation hos_ajout(Hospitalisation hos) throws SQLException {
         Statement state = connec.createStatement();
         String requinser = "INSERT INTO hospitalisation VALUES (    ";
         requinser += "'" + String.valueOf(hos.gethNumMalade().getmNumMalade()) + "'";
@@ -259,7 +256,7 @@ public class Edition {
     }
 
     //suppresion
-    public boolean suppression(Hospitalisation hos) throws SQLException {
+    public boolean hos_suppression(Hospitalisation hos) throws SQLException {
         //On supprime une hospitalisation quand le patient s'en va (d'une manière ou d'une autre)
         String requsuppr = "DELETE FROM hospitalisation WHERE no_malade = ";
         requsuppr += hos.gethNumMalade().getmNumMalade();
@@ -276,7 +273,7 @@ public class Edition {
         }
     }
     //mise a jour
-    public boolean update(Hospitalisation hos) throws SQLException {
+    public boolean hos_update(Hospitalisation hos) throws SQLException {
 
         String requmaj = "UPDATE hospitalisation";
         requmaj += " SET code_service = '";
@@ -303,7 +300,7 @@ public class Edition {
 
     //Infirmier
     //ajout
-    public Infirmier ajout(Infirmier inf) throws SQLException {
+    public Infirmier inf_ajout(Infirmier inf) throws SQLException {
         Statement state = connec.createStatement();
         String requinser = "INSERT INTO infirmier VALUES (    ";
         requinser += "'" + String.valueOf(inf.geteNum()) + "'";
@@ -313,9 +310,7 @@ public class Edition {
         requinser += ")";
 
         state.executeUpdate(requinser);
-        /*//une classe employé est aussi créée
-        Employé emp2 = inf;
-        ajout(emp2);*/
+
 
         //ajout de la classe
         Infirmier infirmier = new Infirmier();
@@ -333,7 +328,7 @@ public class Edition {
     }
 
     //suppression
-    public boolean suppression(Infirmier inf) throws SQLException {
+    public boolean inf_suppression(Infirmier inf) throws SQLException {
         String requsuppr = "DELETE FROM infirmier WHERE numero = ";
         requsuppr += inf.geteNum();
 
@@ -350,7 +345,7 @@ public class Edition {
         }
     }
     //mise a jour
- public boolean update(Infirmier inf) throws SQLException {
+ public boolean inf_update(Infirmier inf) throws SQLException {
 
         String requmaj = "UPDATE infirmier";
         requmaj += "'SET code_service = '";
@@ -376,7 +371,7 @@ public class Edition {
 
     //Malade
     //ajout
-    public Malade ajout(Malade mal) throws SQLException {
+    public Malade mal_ajout(Malade mal) throws SQLException {
         Statement state = connec.createStatement();
         String requinser = "INSERT INTO malade VALUES (    ";
         requinser += "'" + String.valueOf(mal.getmNumMalade()) + "'";
@@ -401,7 +396,7 @@ public class Edition {
     }
 
     //suppression
-    public boolean suppression(Malade mal) throws SQLException {
+    public boolean mal_suppression(Malade mal) throws SQLException {
         String requsuppr = "DELETE FROM malade WHERE numero = ";
         requsuppr += mal.getmNumMalade();
 
@@ -418,7 +413,7 @@ public class Edition {
         }
     }
     //mise a jour
-    public boolean update(Malade mal) throws SQLException {
+    public boolean mal_update(Malade mal) throws SQLException {
 
         String requmaj = "UPDATE service";
         requmaj += " SET nom = '";
@@ -449,7 +444,7 @@ public class Edition {
 
     //Service
     //ajout
-    public Service ajout(Service serv) throws SQLException {
+    public Service ser_ajout(Service serv) throws SQLException {
         Statement state = connec.createStatement();
         String requinser = "INSERT INTO service VALUES (    ";
         requinser += "'" + serv.getscodeServ() + "'";
@@ -472,7 +467,7 @@ public class Edition {
     }
 
     //suppression
-    public boolean suppression(Service serv) throws SQLException {
+    public boolean ser_suppression(Service serv) throws SQLException {
         String requsuppr = "DELETE FROM service WHERE code = '";
         requsuppr += serv.getscodeServ();
         requsuppr += "'";
@@ -490,7 +485,7 @@ public class Edition {
         }
     }
     //mise a jour
-    public boolean update(Service ser) throws SQLException {
+    public boolean ser_update(Service ser) throws SQLException {
 
         String requmaj = "UPDATE service";
         requmaj += " SET nom = '";
@@ -517,7 +512,7 @@ public class Edition {
 
     //Soigne
     //ajout
-    public Soigne ajout(Soigne soi) throws SQLException {
+    public Soigne soi_ajout(Soigne soi) throws SQLException {
         Statement state = connec.createStatement();
         String requinser = "INSERT INTO soigne VALUES (    ";
         requinser += "'" + String.valueOf(soi.getso_eNum().geteNum()) + "'";
@@ -536,7 +531,7 @@ public class Edition {
     }
 
     //suppression
-    public boolean suppression(Soigne soi) throws SQLException {
+    public boolean soi_suppression(Soigne soi) throws SQLException {
         String requsuppr = "DELETE FROM soigne WHERE no_malade = ";
         requsuppr += soi.getsoNumMalade().getmNumMalade();
         requsuppr += " AND no_docteur = ";
@@ -555,7 +550,7 @@ public class Edition {
         }
     }
     //mise a jour
-    public boolean update(Soigne soi) throws SQLException {
+    public boolean soi_update(Soigne soi) throws SQLException {
 
         String requmaj = "UPDATE soigne";
         requmaj += " SET no_docteur = '";

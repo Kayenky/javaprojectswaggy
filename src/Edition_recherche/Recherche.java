@@ -13,7 +13,7 @@ import BDD.Infirmier;
 import BDD.Malade;
 import BDD.Service;
 import BDD.Soigne;
-import ConnexionPart.Connexion;
+import Interface_graphique.Connexion;
 import ConnexionPart.SSHTunnel;
 
 import java.sql.*;
@@ -26,7 +26,6 @@ import java.sql.SQLException;
  * @author paulferrand
  */
 public class Recherche {
-
     Connection connec;
 
     public Recherche(Connection conn) throws SQLException {
@@ -196,5 +195,28 @@ public class Recherche {
         }
         resulttout.close();
         return liste_soigne;
+    }
+    
+    public List<String> recherchetable(String table, String champ, String condi) throws SQLException {
+        List<String> liste = new ArrayList<>();
+        Statement state = connec.createStatement();
+        String requete = "SELECT ";
+        requete += champ;
+        requete += " FROM ";
+        requete += table;
+        requete += " WHEN ";
+        requete += champ;
+        requete += " = '";
+        requete += condi;
+        requete += "'";
+        
+
+        ResultSet result = state.executeQuery(requete);
+        //tant qu'il y a un autre résultat avec la requete
+        while (result.next()) {
+            
+        }
+        result.close();
+        return liste;
     }
 }

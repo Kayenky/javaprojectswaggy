@@ -13,7 +13,7 @@ import BDD.Infirmier;
 import BDD.Malade;
 import BDD.Service;
 import BDD.Soigne;
-import ConnexionPart.Connexion;
+import Interface_graphique.Connexion;
 import ConnexionPart.SSHTunnel;
 
 import java.sql.*;
